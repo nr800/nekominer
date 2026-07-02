@@ -1,0 +1,7 @@
+/.idea/
+/.claude/
+/.claude-sandbox/
+/.secrets/
+
+# build artifact — distributed via Releases, not committed
+/nekominer
