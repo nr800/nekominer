@@ -4,7 +4,6 @@
 
 - **Hashrate improvements.**
 
-
 ## [0.11.28] — 2026-06-30
 
 - **BTX hashrate further improved.**
