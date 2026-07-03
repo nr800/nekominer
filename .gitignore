@@ -3,5 +3,6 @@
 /.claude-sandbox/
 /.secrets/
 
-# build artifact — distributed via Releases, not committed
+# build artifacts — distributed via Releases, not committed
 /nekominer
+/dist/

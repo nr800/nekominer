@@ -58,7 +58,8 @@ for ((i=0; i<dev_count; i++)); do
     total_rj=$((total_rj + rj))
 
     [[ $i -gt 0 ]] && hs_array+="," && bus_array+=","
-    hs_array+="$hr"
+    hr_khs=$(awk "BEGIN {printf \"%.3f\", $hr / 1000}")
+    hs_array+="$hr_khs"
     bus_array+="$bus_dec"
 done
 
@@ -105,7 +106,7 @@ fans_array+="]"
 # Build stats JSON for HiveOS
 stats=$(jq -n \
     --argjson hs "$hs_array" \
-    --arg hs_units "hs" \
+    --arg hs_units "khs" \
     --arg algo "$algo" \
     --argjson temp "$temps_array" \
     --argjson fan "$fans_array" \
