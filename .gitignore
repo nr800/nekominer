@@ -1,6 +1,7 @@
 /.idea/
 /.claude/
 /.claude-sandbox/
+/.claude-sandbox-release/
 /.secrets/
 
 # build artifacts — distributed via Releases, not committed

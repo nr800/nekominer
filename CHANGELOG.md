@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.30] — 2026-07-04
+
+- minor hashrate improve
+
 ## [0.11.29] — 2026-07-03
 
 - **Hashrate improvements.**
