@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.35] — 2026-07-04
+
+- Improved autotuning — now selects the correct kernel, restoring normal hashrate on some cards.
+- Reports hashrate to the pool.
+- Improved crash reports for easier self-diagnosis.
+
 ## [0.11.30] — 2026-07-04
 
 - minor hashrate improve

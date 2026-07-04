@@ -34,33 +34,44 @@ miner_version=$(echo "$API_RESPONSE" | jq -r '.version // "unknown"')
 uptime=$(echo "$API_RESPONSE" | jq -r '.uptime // 0')
 algo=$(echo "$API_RESPONSE" | jq -r '.algo // "unknown"')
 
-# Build per-GPU hashrate array and totals
+# Build per-GPU hashrate array and totals.
+# The miner may report a non-GPU device (CPU) with id -1 and an empty bus_id.
+# It contributes to the totals, but must NOT enter the per-GPU arrays: those
+# stay aligned with the GPU-only temp/fan lists (nvidia-smi) and with HiveOS
+# bus_numbers matching. Adding it as a fake GPU on bus 0 desyncs everything.
 dev_count=$(echo "$API_RESPONSE" | jq '.devices | length')
 hs_array="["
 bus_array="["
 total_hs=0
 total_ac=0
 total_rj=0
+gpu_count=0
 
 for ((i=0; i<dev_count; i++)); do
     dev=$(echo "$API_RESPONSE" | jq ".devices[$i]")
     hr=$(echo "$dev" | jq -r '.hashrate // 0' | cut -d'.' -f1)
     ac=$(echo "$dev" | jq -r '.accepted // 0')
     rj=$(echo "$dev" | jq -r '.rejected // 0')
-    bus_id=$(echo "$dev" | jq -r '.bus_id // "00:00.0"')
+    dev_id=$(echo "$dev" | jq -r '.id // 0')
+    bus_id=$(echo "$dev" | jq -r '.bus_id // ""')
+
+    # Totals include every device (GPUs + CPU)
+    total_hs=$((total_hs + hr))
+    total_ac=$((total_ac + ac))
+    total_rj=$((total_rj + rj))
+
+    # Per-GPU arrays: skip non-GPU devices (CPU: id -1 / empty bus_id)
+    [[ "$dev_id" -lt 0 || -z "$bus_id" ]] && continue
 
     # Convert bus_id "01:00.0" to decimal
     bus_hex=$(echo "$bus_id" | grep -oP '^[0-9A-Fa-f]+' | head -1)
     bus_dec=$((16#${bus_hex:-0}))
 
-    total_hs=$((total_hs + hr))
-    total_ac=$((total_ac + ac))
-    total_rj=$((total_rj + rj))
-
-    [[ $i -gt 0 ]] && hs_array+="," && bus_array+=","
+    [[ $gpu_count -gt 0 ]] && hs_array+="," && bus_array+=","
     hr_khs=$(awk "BEGIN {printf \"%.3f\", $hr / 1000}")
     hs_array+="$hr_khs"
     bus_array+="$bus_dec"
+    gpu_count=$((gpu_count + 1))
 done
 
 hs_array+="]"
@@ -93,7 +104,7 @@ if command -v nvidia-smi &> /dev/null; then
         ((i++))
     done <<< "$gpu_fans"
 else
-    for ((i=0; i<dev_count; i++)); do
+    for ((i=0; i<gpu_count; i++)); do
         [[ $i -gt 0 ]] && temps_array+="," && fans_array+=","
         temps_array+="null"
         fans_array+="null"
