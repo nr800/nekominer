@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.40] — 2026-07-05
+
+- **BTX hashrate improved again.**
+
 ## [0.11.37] — 2026-07-05
 
 - **BTX hashrate further improved.**
