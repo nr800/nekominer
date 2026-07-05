@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.36] — 2026-07-05
+
+- **BTX hashrate improved.**
+
 ## [0.11.35] — 2026-07-04
 
 - Improved autotuning — now selects the correct kernel, restoring normal hashrate on some cards.
