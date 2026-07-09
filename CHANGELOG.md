@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.55] — 2026-07-09
+
+- **Failover pools.** Specify one or more backup pools; automatic switchover if the primary drops.
+
 ## [0.11.52] — 2026-07-08
 
 - **Bug fixes.**

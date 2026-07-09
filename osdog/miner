@@ -40,8 +40,9 @@ echo "> API Port: $API_PORT"
 
 free_port $API_PORT
 
-batch="./nekominer -o $POOL -u $TEMPLATE --api-port $API_PORT"
-[[ -n "$ALGO" ]] && batch="./nekominer -a $ALGO -o $POOL -u $TEMPLATE --api-port $API_PORT"
+batch="./nekominer -u $TEMPLATE --api-port $API_PORT"
+[[ -n "$ALGO" ]] && batch="./nekominer -a $ALGO -u $TEMPLATE --api-port $API_PORT"
+[[ -n "$POOL" ]] && batch+=" -o $POOL"
 
 [[ -n "$devices" ]] && batch+=" -d $devices"
 [[ -n "$remainingAddition" ]] && batch+=" $remainingAddition"
