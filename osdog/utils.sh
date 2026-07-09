@@ -2,7 +2,10 @@
 
 # parse args
 parse_args() {
-    local args="$1"
+    # os.dog passes the addition field as multi-line text (one -o pool per line for
+    # failover). Flatten newlines/CRs to spaces so `read` below tokenizes ALL args,
+    # not just the first line.
+    local args="${1//[$'\n\r']/ }"
     shift
     local keys=("$@")
 
