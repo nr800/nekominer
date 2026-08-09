@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.12.2] — 2026-08-09
+
+- Added **btxv4** algorithm — BTX ENC_RC, the post-185'000 fork; 10% dev fee.
+
 ## [0.11.55] — 2026-07-09
 
 - **Failover pools.** Specify one or more backup pools; automatic switchover if the primary drops.
