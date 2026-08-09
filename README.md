@@ -13,6 +13,7 @@ CUDA GPU miner.
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
 | `btx` | BTX | 1% |
+| `btxv4` | BTX | 10% |
 | `vecnohash` | VE (Vecno) | 1% |
 | `equihash` | YEC (Ycash) | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
@@ -22,7 +23,6 @@ CUDA GPU miner.
 
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
-| `bitweb` | BTE (Bitweb) | 1% |
 | `blake3` |  | 10% |
 
 </details>
@@ -46,10 +46,8 @@ CUDA GPU miner.
 
 | Card | Algorithm | Coin | Hashrate | Core | Mem | Power |
 |------|-----------|------|----------|------|-----|-------|
-| RTX 3070 | `bitweb` | BTE (Bitweb) | ~55.4 kH/s | 1560 +210 | +2000 | ~122 W |
 | RTX 3070 | `blake3` | QADO | ~4.3 GH/s | — | — | — |
 
-<sub>bitweb: memory-bandwidth-bound — mem OC is the lever (~36 → 55 kH/s); core barely matters (+150 ≈ 0); 0 rejected.</sub><br>
 <sub>blake3 from earlier builds (OC not benchmarked).</sub>
 
 </details>
@@ -65,7 +63,7 @@ Choose `-a` from the table above. Per-algorithm pool URLs, connection examples, 
 HiveOS flight sheets are in the sections below; pools shown with `ssl://` need the prefix.
 
 **HiveOS:** create a **Custom Miner** flight sheet with installation URL
-`https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz`
+`https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz`
 and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight sheets are below. The os.dog package is at the bottom.
 
 ## Requirements
@@ -95,7 +93,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "url": "ssl://ninjaraider.com:44701",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a vecnohash"
     }
   }]
@@ -122,7 +120,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "url": "ssl://ninjaraider.com:44561",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a equihash"
     }
   }]
@@ -157,7 +155,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://ninjaraider.com:44913",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -178,7 +176,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://exfer.luckypool.io:3336",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -224,7 +222,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://ninjaraider.com:44921",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a btx"
     }
   }]
@@ -245,7 +243,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "minebtx.com:3333",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a btx --pool-proto minebtx"
     }
   }]
@@ -266,7 +264,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "bitminerpool.xyz:3333",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a btx --pool-proto minebtx"
     }
   }]
@@ -287,37 +285,8 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "stratum.ariabrain.com:3940",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-hiveos-0.12.2.tar.gz",
       "user_config": "-a btx --pool-proto aria --worker %WORKER%"
-    }
-  }]
-}
-```
-</details>
-
-<details>
-<summary>Bitweb — BTE (deprecated)</summary>
-
-Argon2id (m=1 MiB, t=3, p=1) memory-hard PoW.
-
-```bash
-./nekominer -a bitweb -o ssl://mining.bitwebcore.net:3032 -u %ADDRESS%.%WORKER%
-```
-
-HiveOS flight sheet — **BTE bitwebcore nekominer**:
-
-```json
-{
-  "name": "BTE bitwebcore nekominer",
-  "items": [{
-    "coin": "BTE",
-    "miner": "custom",
-    "miner_config": {
-      "url": "ssl://mining.bitwebcore.net:3032",
-      "miner": "nekominer-hiveos",
-      "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-hiveos-0.11.55.tar.gz",
-      "user_config": "-a bitweb"
     }
   }]
 }
@@ -328,4 +297,4 @@ HiveOS flight sheet — **BTE bitwebcore nekominer**:
 
 See [Releases](../../releases).
 
-- **os.dog package:** [`nekominer-osdog-0.11.55.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.11.55/nekominer-osdog-0.11.55.tar.gz)
+- **os.dog package:** [`nekominer-osdog-0.12.2.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.12.2/nekominer-osdog-0.12.2.tar.gz)
