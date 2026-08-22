@@ -12,7 +12,7 @@ CUDA GPU miner.
 
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
-| `btxv4` (alias `btx`) | BTX | 2% |
+| `btxv4` (alias `btx`) | BTX | 2%, **0% on ninjaraider** |
 | `vecnohash` | VE (Vecno) | 1% |
 | `equihash` | YEC (Ycash) | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
@@ -186,9 +186,13 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 `btxv4` is the post-185'000 fork; **`btx` is an alias for it** — the pre-fork v3 PoW is gone.
 
 `--pool-proto` defaults to `auto`, which probes the pool, so it can normally be omitted.
-`minebtx` (Stratum v1 + `matmul_meta`) takes a bare address plus `--worker <name>`.
+`ninja` (ninjaraider) puts the worker in the address (`address.worker`); `minebtx`
+(Stratum v1 + `matmul_meta`) takes a bare address plus `--worker <name>`.
 
 ```bash
+# ninjaraider.com
+./nekominer -a btxv4 -o ninjaraider.com:44950 -u <BTX_ADDRESS>.rig
+
 # btxbyronbay.com
 ./nekominer -a btxv4 -o stratum.btxbyronbay.com:3335 -u <BTX_ADDRESS> --worker rig
 
@@ -196,7 +200,26 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 ./nekominer -a btxv4 -o btx.diffpool.xyz:3333 -u <BTX_ADDRESS> --worker rig
 ```
 
-`# ninjaraider.com` — *coming soon*
+<details>
+<summary>BTX ninjaraider nekominer</summary>
+
+```json
+{
+  "name": "BTX ninjaraider nekominer",
+  "items": [{
+    "coin": "BTX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "ninjaraider.com:44950",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
+      "user_config": "-a btxv4"
+    }
+  }]
+}
+```
+</details>
 
 <details>
 <summary>BTX byronbay nekominer</summary>
