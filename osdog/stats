@@ -53,7 +53,11 @@ fi
 gpus=$(echo "$json_data" | jq -c '[.devices[] | select((.bus_id // "") != "" and (.id // 0) >= 0)]')
 gpuCount=$(echo "$gpus" | jq 'length')
 
-miner_hr_json=$(echo "$gpus" | jq -c '[.[].hashrate | floor]')
+# Keep the decimals. `floor` truncated every rate to its integer part, which on
+# btxv4 — one episode is ~5 s, so a card sits at ~0.24 H/s — reported 0 for every
+# GPU. os.dog's format carries no unit field, so these stay raw H/s; rounding to
+# 6 decimals just keeps float noise out of the JSON.
+miner_hr_json=$(echo "$gpus" | jq -c '[.[].hashrate | (. * 1000000 | round) / 1000000]')
 miner_share_json=$(echo "$gpus" | jq -c '[.[].accepted]')
 miner_badshare_json=$(echo "$gpus" | jq -c '[.[].rejected]')
 
@@ -70,7 +74,7 @@ for ((i=0; i < gpuCount; i++)); do
 done
 
 # Totals over every device (GPUs + CPU)
-miner_total_hr=$(echo "$json_data" | jq '[.devices[].hashrate | floor] | add // 0')
+miner_total_hr=$(echo "$json_data" | jq '[.devices[].hashrate] | add // 0 | (. * 1000000 | round) / 1000000')
 miner_total_share=$(echo "$json_data" | jq '[.devices[].accepted] | add // 0')
 miner_total_badshare=$(echo "$json_data" | jq '[.devices[].rejected] | add // 0')
 

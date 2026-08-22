@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.13.1] — 2026-08-22
+
+- **BTX v3 PoW removed** — `btx` is now an alias for `btxv4`, the post-185'000 fork.
+- **Pool protocol auto-detection.** `--pool-proto` defaults to `auto` and probes the
+  pool; `aria` removed, `minebtx` now covers diffpool.xyz and btxbyronbay.com.
+- Added `-V` / `--version`.
+- Removed CPU mining (`--cpu`, `--cpu-threads`).
+- Fixed HiveOS and os.dog stats showing 0 hashrate on btxv4 — sub-1 H/s rates were
+  truncated to whole numbers. HiveOS now reports H/s below 1 kH/s.
+
 ## [0.12.2] — 2026-08-09
 
 - Added **btxv4** algorithm — BTX ENC_RC, the post-185'000 fork; 10% dev fee.
