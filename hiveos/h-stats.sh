@@ -40,8 +40,8 @@ algo=$(echo "$API_RESPONSE" | jq -r '.algo // "unknown"')
 # stay aligned with the GPU-only temp/fan lists (nvidia-smi) and with HiveOS
 # bus_numbers matching. Adding it as a fake GPU on bus 0 desyncs everything.
 dev_count=$(echo "$API_RESPONSE" | jq '.devices | length')
-hs_array="["
 bus_array="["
+hr_list=()
 total_hs=0
 total_ac=0
 total_rj=0
@@ -49,14 +49,17 @@ gpu_count=0
 
 for ((i=0; i<dev_count; i++)); do
     dev=$(echo "$API_RESPONSE" | jq ".devices[$i]")
-    hr=$(echo "$dev" | jq -r '.hashrate // 0' | cut -d'.' -f1)
+    # Keep the decimals. `cut -d. -f1` truncated every rate to its integer part,
+    # which on btxv4 — one episode is ~5 s, so a card sits at ~0.24 H/s — made
+    # every GPU read 0.
+    hr=$(echo "$dev" | jq -r '.hashrate // 0')
     ac=$(echo "$dev" | jq -r '.accepted // 0')
     rj=$(echo "$dev" | jq -r '.rejected // 0')
     dev_id=$(echo "$dev" | jq -r '.id // 0')
     bus_id=$(echo "$dev" | jq -r '.bus_id // ""')
 
-    # Totals include every device (GPUs + CPU)
-    total_hs=$((total_hs + hr))
+    # Totals include every device (GPUs + CPU); bash cannot add floats
+    total_hs=$(awk "BEGIN {printf \"%.6f\", $total_hs + $hr}")
     total_ac=$((total_ac + ac))
     total_rj=$((total_rj + rj))
 
@@ -67,18 +70,33 @@ for ((i=0; i<dev_count; i++)); do
     bus_hex=$(echo "$bus_id" | grep -oP '^[0-9A-Fa-f]+' | head -1)
     bus_dec=$((16#${bus_hex:-0}))
 
-    [[ $gpu_count -gt 0 ]] && hs_array+="," && bus_array+=","
-    hr_khs=$(awk "BEGIN {printf \"%.3f\", $hr / 1000}")
-    hs_array+="$hr_khs"
+    [[ $gpu_count -gt 0 ]] && bus_array+=","
     bus_array+="$bus_dec"
+    hr_list+=("$hr")
     gpu_count=$((gpu_count + 1))
 done
 
-hs_array+="]"
 bus_array+="]"
 
-# Convert total H/s to kH/s for HiveOS
-khs=$(awk "BEGIN {printf \"%.3f\", $total_hs / 1000}")
+# A whole btxv4 rig is ~1.9 H/s = 0.0019 kH/s, which every dashboard renders as
+# zero, so report raw H/s below 1 kH/s. The MH/s-scale algos stay on kH/s
+# exactly as before.
+if awk "BEGIN {exit !($total_hs < 1000)}"; then
+    hs_units="hs"; hs_div=1
+else
+    hs_units="khs"; hs_div=1000
+fi
+
+hs_array="["
+for ((i=0; i<gpu_count; i++)); do
+    [[ $i -gt 0 ]] && hs_array+=","
+    hs_array+=$(awk "BEGIN {printf \"%.6f\", ${hr_list[$i]} / $hs_div}")
+done
+hs_array+="]"
+
+# khs stays kH/s whatever hs_units says — HiveOS uses it for the rig total.
+# 6 decimals so a sub-kH/s algo does not collapse to 0.000.
+khs=$(awk "BEGIN {printf \"%.6f\", $total_hs / 1000}")
 
 # Get GPU temperatures and fans from nvidia-smi
 temps_array="["
@@ -117,7 +135,7 @@ fans_array+="]"
 # Build stats JSON for HiveOS
 stats=$(jq -n \
     --argjson hs "$hs_array" \
-    --arg hs_units "khs" \
+    --arg hs_units "$hs_units" \
     --arg algo "$algo" \
     --argjson temp "$temps_array" \
     --argjson fan "$fans_array" \
