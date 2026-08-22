@@ -191,7 +191,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 ```bash
 # ninjaraider.com
-./nekominer -a btxv4 -o ninjaraider.com:44950 -u <BTX_ADDRESS>.rig
+./nekominer -a btxv4 -o btxv4.ninjaraider.com:44950 -u <BTX_ADDRESS>.rig
 
 # btxbyronbay.com
 ./nekominer -a btxv4 -o stratum.btxbyronbay.com:3335 -u <BTX_ADDRESS> --worker rig
@@ -210,7 +210,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
     "coin": "BTX",
     "miner": "custom",
     "miner_config": {
-      "url": "ninjaraider.com:44950",
+      "url": "btxv4.ninjaraider.com:44950",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
