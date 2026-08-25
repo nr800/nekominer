@@ -185,9 +185,10 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 `btxv4` is the post-185'000 fork; **`btx` is an alias for it** — the pre-fork v3 PoW is gone.
 
-`--pool-proto` defaults to `auto`, which probes the pool, so it can normally be omitted.
-`ninja` (ninjaraider) puts the worker in the address (`address.worker`); `minebtx`
-(Stratum v1 + `matmul_meta`) takes a bare address plus `--worker <name>`.
+`--pool-proto` defaults to `auto`, which probes the pool, so it can normally be omitted —
+ninjaraider speaks `ninja`, the other three `minebtx`. Worker placement is what differs
+between them: ninjaraider and btx-pool.com take `address.worker`, byronbay and diffpool
+take a bare address plus `--worker <name>`.
 
 ```bash
 # ninjaraider.com
@@ -198,6 +199,9 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 # diffpool.xyz
 ./nekominer -a btxv4 -o btx.diffpool.xyz:3333 -u <BTX_ADDRESS> --worker rig
+
+# btx-pool.com
+./nekominer -a btxv4 -o btx-pool.com:3334 -u <BTX_ADDRESS>.rig
 ```
 
 <details>
@@ -257,6 +261,27 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "template": "%WAL%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
       "user_config": "-a btxv4 --worker %WORKER%"
+    }
+  }]
+}
+```
+</details>
+
+<details>
+<summary>BTX btx-pool nekominer</summary>
+
+```json
+{
+  "name": "BTX btx-pool nekominer",
+  "items": [{
+    "coin": "BTX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "btx-pool.com:3334",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
+      "user_config": "-a btxv4"
     }
   }]
 }
