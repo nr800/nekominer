@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.13.5] — 2026-09-02
+
+- **Fixed mass share rejects on multi-GPU rigs** on `minebtx`-protocol pools (btxbyronbay.com, diffpool.xyz and others speaking that protocol).
+- Hashrate boost on some Turing cards (RTX 20xx).
+
 ## [0.13.1] — 2026-08-22
 
 - **BTX v3 PoW removed** — `btx` is now an alias for `btxv4`, the post-185'000 fork.
