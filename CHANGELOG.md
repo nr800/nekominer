@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.23] — 2026-09-08
+
+- **Minor bug fixes.**
+
 ## [0.13.6] — 2026-09-02
 
 - **Fixed mass share rejects on multi-GPU rigs** on `minebtx`-protocol pools (btxbyronbay.com, diffpool.xyz and others speaking that protocol).
