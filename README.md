@@ -16,6 +16,7 @@ CUDA GPU miner.
 | `vecnohash` | VE (Vecno) | 1% |
 | `equihash` | YEC (Ycash) | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
+| `poscan` | NUM (Numen) | 10% |
 
 <details>
 <summary>Deprecated algorithms</summary>
@@ -175,6 +176,33 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
       "user_config": "-a exfer"
+    }
+  }]
+}
+```
+</details>
+
+## PoScan — NUM (Numen)
+
+```bash
+./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u %ADDRESS%.%WORKER%
+```
+
+<details>
+<summary>NUM ninjaraider nekominer</summary>
+
+```json
+{
+  "name": "NUM ninjaraider nekominer",
+  "items": [{
+    "coin": "NUM",
+    "miner": "custom",
+    "miner_config": {
+      "url": "ssl://numen.ninjaraider.com:44961",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "user_config": "-a poscan"
     }
   }]
 }
