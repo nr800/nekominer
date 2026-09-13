@@ -16,7 +16,7 @@ CUDA GPU miner.
 | `vecnohash` | VE (Vecno) | 1% |
 | `equihash` | YEC (Ycash) | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
-| `poscan` | NUM (Numen) | 10% |
+| `poscan` | NUMN (Numen) | 10% |
 
 <details>
 <summary>Deprecated algorithms</summary>
@@ -182,20 +182,20 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 ```
 </details>
 
-## PoScan — NUM (Numen)
+## PoScan — NUMN (Numen)
 
 ```bash
 ./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u %ADDRESS%.%WORKER%
 ```
 
 <details>
-<summary>NUM ninjaraider nekominer</summary>
+<summary>NUMN ninjaraider nekominer</summary>
 
 ```json
 {
-  "name": "NUM ninjaraider nekominer",
+  "name": "NUMN ninjaraider nekominer",
   "items": [{
-    "coin": "NUM",
+    "coin": "NUMN",
     "miner": "custom",
     "miner_config": {
       "url": "ssl://numen.ninjaraider.com:44961",
