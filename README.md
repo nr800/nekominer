@@ -61,7 +61,7 @@ Choose `-a` from the table above. Per-algorithm pool URLs, connection examples, 
 HiveOS flight sheets are in the sections below; pools shown with `ssl://` need the prefix.
 
 **HiveOS:** create a **Custom Miner** flight sheet with installation URL
-`https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz`
+`https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz`
 and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight sheets are below. The os.dog package is at the bottom.
 
 ## Requirements
@@ -91,7 +91,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "url": "ssl://ninjaraider.com:44701",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a vecnohash"
     }
   }]
@@ -118,7 +118,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "url": "ssl://ninjaraider.com:44561",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a equihash"
     }
   }]
@@ -153,7 +153,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://ninjaraider.com:44913",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -174,7 +174,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://exfer.luckypool.io:3336",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -201,7 +201,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://numen.ninjaraider.com:44961",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a poscan"
     }
   }]
@@ -241,7 +241,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "btxv4.ninjaraider.com:44950",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -262,7 +262,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "stratum.btxbyronbay.com:3335",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a btxv4 --worker %WORKER%"
     }
   }]
@@ -283,7 +283,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "btx.diffpool.xyz:3333",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-hiveos-0.14.23.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-hiveos-0.14.28.tar.gz",
       "user_config": "-a btxv4 --worker %WORKER%"
     }
   }]
@@ -295,4 +295,4 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 See [Releases](../../releases).
 
-- **os.dog package:** [`nekominer-osdog-0.14.23.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.14.23/nekominer-osdog-0.14.23.tar.gz)
+- **os.dog package:** [`nekominer-osdog-0.14.28.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.14.28/nekominer-osdog-0.14.28.tar.gz)

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.14.28] — 2026-09-13
+
+- Added **poscan** algorithm.
+- **Equihash (192,7):** hashrate improvement.
+
 ## [0.14.23] — 2026-09-08
 
 - **Minor bug fixes.**
