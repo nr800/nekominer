@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.29] — 2026-09-14
+
+- **Equihash:** fixed duplicate shares on multi-GPU rigs.
+
 ## [0.14.28] — 2026-09-13
 
 - Added **poscan** algorithm.
