@@ -2,7 +2,7 @@
 
 ## [0.14.32] — 2026-09-14
 
-- **PoScan:** hashrate improvement.
+- **Poscan:** hashrate improvement.
 
 ## [0.14.29] — 2026-09-14
 

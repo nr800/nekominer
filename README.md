@@ -182,7 +182,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 ```
 </details>
 
-## PoScan — NUMN (Numen)
+## Poscan — NUMN (Numen)
 
 ```bash
 ./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u %ADDRESS%.%WORKER%
