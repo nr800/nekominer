@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.41] — 2026-09-16
+
+- **Poscan:** hashrate improvement.
+
 ## [0.14.32] — 2026-09-14
 
 - **Poscan:** hashrate improvement.
