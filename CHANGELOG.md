@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.43] — 2026-09-20
+
+- **Equihash (192,7) — YEC:** hashrate improvement, lower CPU load (LA).
+
 ## [0.14.41] — 2026-09-16
 
 - **Poscan:** hashrate improvement.
