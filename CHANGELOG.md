@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.57] — 2026-09-28
+
+- **Equihash:** Pascal and Turing fixes.
+
 ## [0.14.44] — 2026-09-20
 
 - Support mixed Turing and Ampere Equihash rigs in one binary.
