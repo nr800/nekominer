@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.59] — 2026-10-01
+
+- **Equihash:** small speedups on Ampere, Ada and Blackwell.
+
 ## [0.14.57] — 2026-09-28
 
 - **Equihash:** Pascal and Turing fixes.
