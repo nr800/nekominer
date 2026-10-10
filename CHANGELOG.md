@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.60] — 2026-10-10
+
+- **Equihash:** minor hashrate improvement on Pascal and Turing.
+
 ## [0.14.59] — 2026-10-01
 
 - **Equihash:** small speedups on Ampere, Ada and Blackwell.
