@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.15.0] — 2026-10-15
+
+- Added **cmfd** algorithm.
+- **cmfd:** the model (~6.4 GB) is downloaded on first start.
+
 ## [0.14.61] — 2026-10-15
 
 - **Equihash (192,7):** minor hashrate improvement on many architectures.
