@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.61] — 2026-10-15
+
+- **Equihash (192,7):** minor hashrate improvement on many architectures.
+
 ## [0.14.60] — 2026-10-10
 
 - **Equihash:** minor hashrate improvement on Pascal and Turing.
