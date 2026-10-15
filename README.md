@@ -17,6 +17,7 @@ CUDA GPU miner.
 | `equihash` | YEC (Ycash) | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
 | `poscan` | NUMN (Numen) | 10% |
+| `cmfd` | CMFD | 2% |
 
 <details>
 <summary>Deprecated algorithms</summary>
@@ -203,6 +204,61 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.61/nekominer-hiveos-0.14.61.tar.gz",
       "user_config": "-a poscan"
+    }
+  }]
+}
+```
+</details>
+
+## CMFD
+
+On first start the miner downloads the model (~6.4 GB), so the first launch takes a while
+and needs that much free disk space. `-u` takes the 64-hex payout address.
+
+```bash
+# pool.ariabrain.com
+./nekominer -a cmfd -o "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9" -u <CMFD_ADDRESS> --worker rig
+
+# cmfd-pool.online
+./nekominer -a cmfd -o "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be" -u <CMFD_ADDRESS> --worker rig
+```
+
+<details>
+<summary>CMFD ariabrain nekominer</summary>
+
+```json
+{
+  "name": "CMFD ariabrain nekominer",
+  "items": [{
+    "coin": "CMFD",
+    "miner": "custom",
+    "miner_config": {
+      "url": "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.61/nekominer-hiveos-0.14.61.tar.gz",
+      "user_config": "-a cmfd --worker %WORKER_NAME%"
+    }
+  }]
+}
+```
+</details>
+
+<details>
+<summary>CMFD cmfd-pool nekominer</summary>
+
+```json
+{
+  "name": "CMFD cmfd-pool nekominer",
+  "items": [{
+    "coin": "CMFD",
+    "miner": "custom",
+    "miner_config": {
+      "url": "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.14.61/nekominer-hiveos-0.14.61.tar.gz",
+      "user_config": "-a cmfd --worker %WORKER_NAME%"
     }
   }]
 }
