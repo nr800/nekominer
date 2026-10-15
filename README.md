@@ -18,6 +18,7 @@ CUDA GPU miner.
 | `exfer` | EXFER (Exfer) | 10% |
 | `poscan` | NUMN (Numen) | 10% |
 | `cmfd` | CMFD | 2% |
+| `vela` | VELA (Vela) | 3% |
 
 <details>
 <summary>Deprecated algorithms</summary>
@@ -259,6 +260,37 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
       "template": "%WAL%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.15.0/nekominer-hiveos-0.15.0.tar.gz",
       "user_config": "-a cmfd --worker %WORKER_NAME%"
+    }
+  }]
+}
+```
+</details>
+
+## Vela — VELA
+
+On first start the miner downloads the model (~1.2 GB), so the first launch takes a while
+and needs that much free disk space. `-u` takes a `vela1…` address.
+
+```bash
+# pool.ariabrain.com
+./nekominer -a vela -o http://159.69.194.46:3349 -u <VELA_ADDRESS> --worker rig
+```
+
+<details>
+<summary>VELA ariabrain nekominer</summary>
+
+```json
+{
+  "name": "VELA ariabrain nekominer",
+  "items": [{
+    "coin": "VELA",
+    "miner": "custom",
+    "miner_config": {
+      "url": "http://159.69.194.46:3349",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.15.0/nekominer-hiveos-0.15.0.tar.gz",
+      "user_config": "-a vela --worker %WORKER_NAME%"
     }
   }]
 }
