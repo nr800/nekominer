@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.16.0] — 2026-10-16
+
+- Added **vela** algorithm.
+- **vela:** the model (~1.2 GB) is downloaded on first start.
+
 ## [0.15.0] — 2026-10-15
 
 - Added **cmfd** algorithm.
