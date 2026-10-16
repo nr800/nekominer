@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.16.3] — 2026-10-16
+
+- **vela:** bug fixes.
+
 ## [0.16.0] — 2026-10-16
 
 - Added **vela** algorithm.
