@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.16.4] — 2026-10-18
+
+- **vela:** hashrate improvement on Ada and Blackwell.
+
 ## [0.16.3] — 2026-10-16
 
 - **vela:** bug fixes.
