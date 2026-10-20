@@ -13,7 +13,6 @@ CUDA GPU miner.
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
 | `btxv4` (alias `btx`) | BTX | 2%, **0% on ninjaraider** |
-| `vecnohash` | VE (Vecno) | 1% |
 | `equihash192_7` | YEC (Ycash) | 2% |
 | `equihash144_5` |  | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
@@ -27,6 +26,9 @@ CUDA GPU miner.
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
 | `blake3` |  | 10% |
+| `vecnohash` | VE (Vecno) | 1% |
+
+<sub>vecnohash: last supported in [v0.17.0](../../releases/tag/v0.17.0).</sub>
 
 </details>
 
@@ -34,7 +36,6 @@ CUDA GPU miner.
 
 | Card | Algorithm | Coin | Hashrate | Core¹ | Mem² | Power |
 |------|-----------|------|----------|-------|------|-------|
-| RTX 3070 | `vecnohash` | VE (Vecno) | ~44 MH/s | 1710 +150 | stock | ~138 W |
 | RTX 3070 | `equihash192_7` | YEC (Ycash) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
 | RTX 3070 | `exfer` | EXFER | ~973 H/s | 1710 +150 | +2000 | ~119 W |
 
@@ -48,6 +49,7 @@ CUDA GPU miner.
 | Card | Algorithm | Coin | Hashrate | Core | Mem | Power |
 |------|-----------|------|----------|------|-----|-------|
 | RTX 3070 | `blake3` | QADO | ~4.3 GH/s | — | — | — |
+| RTX 3070 | `vecnohash` | VE (Vecno) | ~44 MH/s | 1710 +150 | stock | ~138 W |
 
 <sub>blake3 from earlier builds (OC not benchmarked).</sub>
 
@@ -74,33 +76,6 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 - NVIDIA Driver 525+
 
 ---
-
-## VecnoHash — VE (Vecno)
-
-```bash
-./nekominer -a vecnohash -o ssl://ninjaraider.com:44701 -u %ADDRESS%.%WORKER%
-```
-
-<details>
-<summary>VECNO ninjaraider nekominer</summary>
-
-```json
-{
-  "name": "VECNO ninjaraider nekominer",
-  "items": [{
-    "coin": "VECNO",
-    "miner": "custom",
-    "miner_config": {
-      "url": "ssl://ninjaraider.com:44701",
-      "miner": "nekominer-hiveos",
-      "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.0/nekominer-hiveos-0.17.0.tar.gz",
-      "user_config": "-a vecnohash"
-    }
-  }]
-}
-```
-</details>
 
 ## Equihash (192,7) — YEC (Ycash)
 
