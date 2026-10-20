@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.17.3] — 2026-10-20
+
+- **equihash144_5:** hashrate improvement on Turing, Ada and Blackwell.
+
 ## [0.17.2] — 2026-10-20
 
 - **equihash144_5:** hashrate improvement on Ampere.
