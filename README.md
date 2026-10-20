@@ -59,7 +59,7 @@ CUDA GPU miner.
 ## Usage
 
 ```bash
-./nekominer -a <algo> -o <pool-url> -u <wallet>.<worker>
+./nekominer -a <ALGO> -o <POOL> -u <ADDRESS>.<WORKER>
 ./nekominer --help
 ```
 
@@ -81,7 +81,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 ## Equihash (192,7) — YEC (Ycash)
 
 ```bash
-./nekominer -a equihash192_7 -o ssl://ninjaraider.com:44561 -u %ADDRESS%.%WORKER%
+./nekominer -a equihash192_7 -o ssl://ninjaraider.com:44561 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -111,10 +111,10 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 
 ```bash
 # ninjaraider.com
-./nekominer -a equihash144_5 -o ssl://ninjaraider.com:44981 -u <ADDRESS>.rig
+./nekominer -a equihash144_5 -o ssl://ninjaraider.com:44981 -u <ADDRESS>.<WORKER>
 
 # pool.ariabrain.com
-./nekominer -a equihash144_5 -o 159.69.194.46:3353 -u <ADDRESS>.rig
+./nekominer -a equihash144_5 -o 159.69.194.46:3353 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -143,8 +143,8 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 ```bash
-./nekominer -a exfer -o ssl://ninjaraider.com:44913 -u %ADDRESS%.%WORKER%
-./nekominer -a exfer -o ssl://exfer.luckypool.io:3336 -u %ADDRESS%.%WORKER%
+./nekominer -a exfer -o ssl://ninjaraider.com:44913 -u <ADDRESS>.<WORKER>
+./nekominer -a exfer -o ssl://exfer.luckypool.io:3336 -u <ADDRESS>.<WORKER>
 ```
 
 | Pool | Connection |
@@ -197,7 +197,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 ## Poscan — NUMN (Numen)
 
 ```bash
-./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u %ADDRESS%.%WORKER%
+./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -228,10 +228,10 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
 
 ```bash
 # pool.ariabrain.com
-./nekominer -a cmfd -o "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9" -u <CMFD_ADDRESS> --worker rig
+./nekominer -a cmfd -o "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9" -u <ADDRESS> --worker <WORKER>
 
 # cmfd-pool.online
-./nekominer -a cmfd -o "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be" -u <CMFD_ADDRESS> --worker rig
+./nekominer -a cmfd -o "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be" -u <ADDRESS> --worker <WORKER>
 ```
 
 <details>
@@ -283,7 +283,7 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
 
 ```bash
 # pool.ariabrain.com
-./nekominer -a vela -o http://159.69.194.46:3349 -u <VELA_ADDRESS> --worker rig
+./nekominer -a vela -o http://159.69.194.46:3349 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -298,9 +298,9 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
     "miner_config": {
       "url": "http://159.69.194.46:3349",
       "miner": "nekominer-hiveos",
-      "template": "%WAL%",
+      "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.2/nekominer-hiveos-0.17.2.tar.gz",
-      "user_config": "-a vela --worker %WORKER_NAME%"
+      "user_config": "-a vela"
     }
   }]
 }
@@ -312,18 +312,18 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
 `btxv4` is the post-185'000 fork; **`btx` is an alias for it** — the pre-fork v3 PoW is gone.
 
 `--pool-proto` defaults to `auto`, which probes the pool, so it can normally be omitted.
-`ninja` (ninjaraider) puts the worker in the address (`address.worker`); `minebtx`
-(Stratum v1 + `matmul_meta`) takes a bare address plus `--worker <name>`.
+On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
+(`--worker <WORKER>` does the same).
 
 ```bash
 # ninjaraider.com
-./nekominer -a btxv4 -o btxv4.ninjaraider.com:44950 -u <BTX_ADDRESS>.rig
+./nekominer -a btxv4 -o btxv4.ninjaraider.com:44950 -u <ADDRESS>.<WORKER>
 
-# btxbyronbay.com
-./nekominer -a btxv4 -o stratum.btxbyronbay.com:3335 -u <BTX_ADDRESS> --worker rig
+# btx-pool.com
+./nekominer -a btxv4 -o btx-pool.com:3334 -u <ADDRESS>.<WORKER>
 
 # diffpool.xyz
-./nekominer -a btxv4 -o btx.diffpool.xyz:3333 -u <BTX_ADDRESS> --worker rig
+./nekominer -a btxv4 -o btx.diffpool.xyz:3333 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -348,20 +348,20 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
 </details>
 
 <details>
-<summary>BTX byronbay nekominer</summary>
+<summary>BTX btx-pool nekominer</summary>
 
 ```json
 {
-  "name": "BTX byronbay nekominer",
+  "name": "BTX btx-pool nekominer",
   "items": [{
     "coin": "BTX",
     "miner": "custom",
     "miner_config": {
-      "url": "stratum.btxbyronbay.com:3335",
+      "url": "btx-pool.com:3334",
       "miner": "nekominer-hiveos",
-      "template": "%WAL%",
+      "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.2/nekominer-hiveos-0.17.2.tar.gz",
-      "user_config": "-a btxv4 --worker %WORKER%"
+      "user_config": "-a btxv4"
     }
   }]
 }
@@ -380,9 +380,9 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
     "miner_config": {
       "url": "btx.diffpool.xyz:3333",
       "miner": "nekominer-hiveos",
-      "template": "%WAL%",
+      "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.2/nekominer-hiveos-0.17.2.tar.gz",
-      "user_config": "-a btxv4 --worker %WORKER%"
+      "user_config": "-a btxv4"
     }
   }]
 }
