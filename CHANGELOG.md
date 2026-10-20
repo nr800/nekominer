@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.17.1] — 2026-10-20
+
+- **equihash144_5:** fixed pool connection issues.
+- Removed **vecnohash** algorithm.
+
 ## [0.17.0] — 2026-10-20
 
 - Added **equihash144_5** algorithm.
