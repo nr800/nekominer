@@ -14,7 +14,7 @@ CUDA GPU miner.
 |-----------|------|---------|
 | `btxv4` (alias `btx`) | BTX | 2%, **0% on ninjaraider** |
 | `equihash192_7` | YEC (Ycash) | 2% |
-| `equihash144_5` |  | 2% |
+| `equihash144_5` | NULL | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
 | `poscan` | NUMN (Numen) | 10% |
 | `cmfd` | CMFD | 2% |
@@ -99,6 +99,39 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.2/nekominer-hiveos-0.17.2.tar.gz",
       "user_config": "-a equihash192_7"
+    }
+  }]
+}
+```
+</details>
+
+## Equihash (144,5) — NULL
+
+`-u` takes a `null1…` address.
+
+```bash
+# ninjaraider.com
+./nekominer -a equihash144_5 -o ssl://ninjaraider.com:44981 -u <ADDRESS>.rig
+
+# pool.ariabrain.com
+./nekominer -a equihash144_5 -o 159.69.194.46:3353 -u <ADDRESS> --worker rig
+```
+
+<details>
+<summary>NULL ninjaraider nekominer</summary>
+
+```json
+{
+  "name": "NULL ninjaraider nekominer",
+  "items": [{
+    "coin": "NULL",
+    "miner": "custom",
+    "miner_config": {
+      "url": "ssl://ninjaraider.com:44981",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.2/nekominer-hiveos-0.17.2.tar.gz",
+      "user_config": "-a equihash144_5"
     }
   }]
 }
