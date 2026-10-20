@@ -23,12 +23,10 @@ CUDA GPU miner.
 <details>
 <summary>Deprecated algorithms</summary>
 
-| Algorithm | Coin | Dev Fee |
-|-----------|------|---------|
-| `blake3` |  | 10% |
-| `vecnohash` | VE (Vecno) | 1% |
-
-<sub>vecnohash: last supported in [v0.17.0](../../releases/tag/v0.17.0).</sub>
+| Algorithm | Coin | Last supported |
+|-----------|------|----------------|
+| `blake3` | QADO (Qado) | [v0.11.41](../../releases/tag/v0.11.41) |
+| `vecnohash` | VE (Vecno) | [v0.17.0](../../releases/tag/v0.17.0) |
 
 </details>
 
