@@ -14,7 +14,8 @@ CUDA GPU miner.
 |-----------|------|---------|
 | `btxv4` (alias `btx`) | BTX | 2%, **0% on ninjaraider** |
 | `vecnohash` | VE (Vecno) | 1% |
-| `equihash` | YEC (Ycash) | 2% |
+| `equihash192_7` | YEC (Ycash) | 2% |
+| `equihash144_5` |  | 2% |
 | `exfer` | EXFER (Exfer) | 10% |
 | `poscan` | NUMN (Numen) | 10% |
 | `cmfd` | CMFD | 2% |
@@ -34,7 +35,7 @@ CUDA GPU miner.
 | Card | Algorithm | Coin | Hashrate | Core¹ | Mem² | Power |
 |------|-----------|------|----------|-------|------|-------|
 | RTX 3070 | `vecnohash` | VE (Vecno) | ~44 MH/s | 1710 +150 | stock | ~138 W |
-| RTX 3070 | `equihash` | YEC (Ycash) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
+| RTX 3070 | `equihash192_7` | YEC (Ycash) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
 | RTX 3070 | `exfer` | EXFER | ~973 H/s | 1710 +150 | +2000 | ~119 W |
 
 <sub>¹ Core = locked SM clock + offset (MHz): lock at 1710, add +150 — holds the clock at lower voltage (less power).</sub><br>
@@ -101,10 +102,10 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 ```
 </details>
 
-## Equihash — YEC (Ycash)
+## Equihash (192,7) — YEC (Ycash)
 
 ```bash
-./nekominer -a equihash -o ssl://ninjaraider.com:44561 -u %ADDRESS%.%WORKER%
+./nekominer -a equihash192_7 -o ssl://ninjaraider.com:44561 -u %ADDRESS%.%WORKER%
 ```
 
 <details>
@@ -121,7 +122,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
       "install_url": "https://github.com/nr800/nekominer/releases/download/v0.16.4/nekominer-hiveos-0.16.4.tar.gz",
-      "user_config": "-a equihash"
+      "user_config": "-a equihash192_7"
     }
   }]
 }
