@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.17.2] — 2026-10-20
+
+- **equihash144_5:** hashrate improvement on Ampere.
+
 ## [0.17.1] — 2026-10-20
 
 - **equihash144_5:** fixed pool connection issues.
