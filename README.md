@@ -114,7 +114,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 ./nekominer -a equihash144_5 -o ssl://ninjaraider.com:44981 -u <ADDRESS>.rig
 
 # pool.ariabrain.com
-./nekominer -a equihash144_5 -o 159.69.194.46:3353 -u <ADDRESS> --worker rig
+./nekominer -a equihash144_5 -o 159.69.194.46:3353 -u <ADDRESS>.rig
 ```
 
 <details>
