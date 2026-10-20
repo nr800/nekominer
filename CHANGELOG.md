@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.17.0] — 2026-10-20
+
+- Added **equihash144_5** algorithm.
+- **equihash** renamed to **equihash192_7** — `-a equihash` no longer works, update flight sheets.
+
 ## [0.16.4] — 2026-10-18
 
 - **vela:** hashrate improvement on Ada and Blackwell.
