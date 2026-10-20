@@ -30,7 +30,8 @@ CUDA GPU miner.
 
 </details>
 
-## Benchmarks
+<details>
+<summary>Benchmarks</summary>
 
 | Card | Algorithm | Coin | Hashrate | Core¹ | Mem² | Power |
 |------|-----------|------|----------|-------|------|-------|
@@ -50,6 +51,8 @@ CUDA GPU miner.
 | RTX 3070 | `vecnohash` | VE (Vecno) | ~44 MH/s | 1710 +150 | stock | ~138 W |
 
 <sub>blake3 from earlier builds (OC not benchmarked).</sub>
+
+</details>
 
 </details>
 
