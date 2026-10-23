@@ -12,21 +12,22 @@ CUDA GPU miner.
 
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
+| `quantus` | Quantus (QTC) | 1% |
 | `btxv4` (alias `btx`) | BTX | 2%, **0% on ninjaraider** |
-| `equihash192_7` | YEC (Ycash) | 2% |
+| `equihash192_7` | Ycash (YEC) | 2% |
 | `equihash144_5` | NULL | 2% |
-| `exfer` | EXFER (Exfer) | 10% |
-| `poscan` | NUMN (Numen) | 10% |
+| `exfer` | Exfer (EXFER) | 10% |
+| `poscan` | Numen (NUMN) | 10% |
 | `cmfd` | CMFD | 2% |
-| `vela` | VELA (Vela) | 3% |
+| `vela` | Vela (VELA) | 3% |
 
 <details>
 <summary>Deprecated algorithms</summary>
 
 | Algorithm | Coin | Last supported |
 |-----------|------|----------------|
-| `blake3` | QADO (Qado) | [v0.11.41](../../releases/tag/v0.11.41) |
-| `vecnohash` | VE (Vecno) | [v0.17.0](../../releases/tag/v0.17.0) |
+| `blake3` | Qado (QADO) | [v0.11.41](../../releases/tag/v0.11.41) |
+| `vecnohash` | Vecno (VE) | [v0.17.0](../../releases/tag/v0.17.0) |
 
 </details>
 
@@ -35,8 +36,8 @@ CUDA GPU miner.
 
 | Card | Algorithm | Coin | Hashrate | Core¹ | Mem² | Power |
 |------|-----------|------|----------|-------|------|-------|
-| RTX 3070 | `equihash192_7` | YEC (Ycash) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
-| RTX 3070 | `exfer` | EXFER | ~973 H/s | 1710 +150 | +2000 | ~119 W |
+| RTX 3070 | `equihash192_7` | Ycash (YEC) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
+| RTX 3070 | `exfer` | Exfer (EXFER) | ~973 H/s | 1710 +150 | +2000 | ~119 W |
 
 <sub>¹ Core = locked SM clock + offset (MHz): lock at 1710, add +150 — holds the clock at lower voltage (less power).</sub><br>
 <sub>² Mem = GDDR6 transfer-rate offset: `stock` = no OC (boosts to ~6801), `+2000` = memory overclock.</sub><br>
@@ -47,8 +48,8 @@ CUDA GPU miner.
 
 | Card | Algorithm | Coin | Hashrate | Core | Mem | Power |
 |------|-----------|------|----------|------|-----|-------|
-| RTX 3070 | `blake3` | QADO | ~4.3 GH/s | — | — | — |
-| RTX 3070 | `vecnohash` | VE (Vecno) | ~44 MH/s | 1710 +150 | stock | ~138 W |
+| RTX 3070 | `blake3` | Qado (QADO) | ~4.3 GH/s | — | — | — |
+| RTX 3070 | `vecnohash` | Vecno (VE) | ~44 MH/s | 1710 +150 | stock | ~138 W |
 
 <sub>blake3 from earlier builds (OC not benchmarked).</sub>
 
@@ -78,7 +79,37 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 
 ---
 
-## Equihash (192,7) — YEC (Ycash)
+## Quantus (QTC)
+
+Optimized for the RTX 3070 only for now.
+
+```bash
+# kryptex.network
+./nekominer -a quantus -o ssl://qtc.kryptex.network:8049 -u <ADDRESS>.<WORKER>
+```
+
+<details>
+<summary>QTC kryptex nekominer</summary>
+
+```json
+{
+  "name": "QTC kryptex nekominer",
+  "items": [{
+    "coin": "QTC",
+    "miner": "custom",
+    "miner_config": {
+      "url": "ssl://qtc.kryptex.network:8049",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "user_config": "-a quantus"
+    }
+  }]
+}
+```
+</details>
+
+## Equihash (192,7) — Ycash (YEC)
 
 ```bash
 ./nekominer -a equihash192_7 -o ssl://ninjaraider.com:44561 -u <ADDRESS>.<WORKER>
@@ -138,7 +169,7 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 ```
 </details>
 
-## Exfer — EXFER
+## Exfer (EXFER)
 
 Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
@@ -194,7 +225,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 ```
 </details>
 
-## Poscan — NUMN (Numen)
+## Poscan — Numen (NUMN)
 
 ```bash
 ./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u <ADDRESS>.<WORKER>
@@ -276,7 +307,7 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
 ```
 </details>
 
-## Vela — VELA
+## Vela (VELA)
 
 On first start the miner downloads the model (~1.2 GB), so the first launch takes a while
 and needs that much free disk space. `-u` takes a `vela1…` address.
