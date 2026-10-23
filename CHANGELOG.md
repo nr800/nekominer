@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.18.0] — 2026-10-23
+
+- Added **quantus** algorithm — optimized for the RTX 3070 only for now.
+
 ## [0.17.4] — 2026-10-22
 
 - **equihash144_5:** hashrate improvement on Ampere, Ada and Blackwell.

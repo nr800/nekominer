@@ -68,7 +68,7 @@ Choose `-a` from the table above. Per-algorithm pool URLs, connection examples, 
 HiveOS flight sheets are in the sections below; pools shown with `ssl://` need the prefix.
 
 **HiveOS:** create a **Custom Miner** flight sheet with installation URL
-`https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz`
+`https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz`
 and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight sheets are below. The os.dog package is at the bottom.
 
 ## Requirements
@@ -101,7 +101,7 @@ Optimized for the RTX 3070 only for now.
       "url": "ssl://qtc.kryptex.network:8049",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a quantus"
     }
   }]
@@ -128,7 +128,7 @@ Optimized for the RTX 3070 only for now.
       "url": "ssl://ninjaraider.com:44561",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a equihash192_7"
     }
   }]
@@ -161,7 +161,7 @@ Optimized for the RTX 3070 only for now.
       "url": "ssl://ninjaraider.com:44981",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a equihash144_5"
     }
   }]
@@ -196,7 +196,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://ninjaraider.com:44913",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -217,7 +217,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://exfer.luckypool.io:3336",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -244,7 +244,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://numen.ninjaraider.com:44961",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a poscan"
     }
   }]
@@ -278,7 +278,7 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
       "url": "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a cmfd --worker %WORKER_NAME%"
     }
   }]
@@ -299,7 +299,7 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
       "url": "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a cmfd --worker %WORKER_NAME%"
     }
   }]
@@ -330,7 +330,7 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
       "url": "http://159.69.194.46:3349",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a vela"
     }
   }]
@@ -370,7 +370,7 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
       "url": "btxv4.ninjaraider.com:44950",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -391,7 +391,7 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
       "url": "btx-pool.com:3334",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -412,7 +412,7 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
       "url": "btx.diffpool.xyz:3333",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-hiveos-0.17.4.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-hiveos-0.18.0.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -424,4 +424,4 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
 
 See [Releases](../../releases).
 
-- **os.dog package:** [`nekominer-osdog-0.17.4.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.17.4/nekominer-osdog-0.17.4.tar.gz)
+- **os.dog package:** [`nekominer-osdog-0.18.0.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.18.0/nekominer-osdog-0.18.0.tar.gz)
