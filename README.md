@@ -81,8 +81,6 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 
 ## Quantus (QTC)
 
-Optimized for the RTX 3070 only for now.
-
 ```bash
 # kryptex.network
 ./nekominer -a quantus -o ssl://qtc.kryptex.network:8049 -u <ADDRESS>.<WORKER>
