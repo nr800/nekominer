@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.18.1] — 2026-10-24
+
+- **quantus:** hashrate improvement on Turing, Ampere, Ada and Blackwell.
+- **btxv4:** hashrate improvement on Ada and Blackwell.
+
 ## [0.18.0] — 2026-10-23
 
 - Added **quantus** algorithm — optimized for the RTX 3070 only for now.
