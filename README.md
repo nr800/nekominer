@@ -20,6 +20,7 @@ CUDA GPU miner.
 | `poscan` | Numen (NUMN) | 10% |
 | `cmfd` | CMFD | 2% |
 | `vela` | Vela (VELA) | 3% |
+| `sha3_256` | RigorChain | 3% |
 
 <details>
 <summary>Deprecated algorithms</summary>
