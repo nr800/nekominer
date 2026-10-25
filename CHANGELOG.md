@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.19.3] — 2026-10-25
+
+- **poscan:** hashrate improvement.
+
 ## [0.19.1] — 2026-10-25
 
 - Added **sha3_256** algorithm.
