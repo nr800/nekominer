@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.19.1] — 2026-10-25
+
+- Added **sha3_256** algorithm.
+- **poscan:** hashrate improvement.
+
 ## [0.18.1] — 2026-10-24
 
 - **quantus:** hashrate improvement on Turing, Ampere, Ada and Blackwell.
