@@ -3,7 +3,7 @@
 ## [0.19.1] — 2026-10-25
 
 - Added **sha3_256** algorithm.
-- **poscan:** hashrate improvement.
+- **poscan:** hashrate improvement on the RTX 4070.
 
 ## [0.18.1] — 2026-10-24
 
