@@ -7,3 +7,4 @@
 # build artifacts — distributed via Releases, not committed
 /nekominer
 /dist/
+*.sh

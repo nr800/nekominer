@@ -12,27 +12,33 @@ CUDA GPU miner.
 
 | Algorithm | Coin | Dev Fee |
 |-----------|------|---------|
+| `quantus` | Quantus (QTC) | 1% |
 | `btxv4` (alias `btx`) | BTX | 2%, **0% on ninjaraider** |
-| `vecnohash` | VE (Vecno) | 1% |
-| `equihash` | YEC (Ycash) | 2% |
-| `exfer` | EXFER (Exfer) | 10% |
+| `equihash192_7` | Ycash (YEC) | 2% |
+| `equihash144_5` | NULL | 2% |
+| `exfer` | Exfer (EXFER) | 10% |
+| `poscan` | Numen (NUMN) | 10% |
+| `cmfd` | CMFD | 2% |
+| `vela` | Vela (VELA) | 3% |
+| `sha3_256` | RigorChain | 3% |
 
 <details>
 <summary>Deprecated algorithms</summary>
 
-| Algorithm | Coin | Dev Fee |
-|-----------|------|---------|
-| `blake3` |  | 10% |
+| Algorithm | Coin | Last supported |
+|-----------|------|----------------|
+| `blake3` | Qado (QADO) | [v0.11.41](../../releases/tag/v0.11.41) |
+| `vecnohash` | Vecno (VE) | [v0.17.0](../../releases/tag/v0.17.0) |
 
 </details>
 
-## Benchmarks
+<details>
+<summary>Benchmarks</summary>
 
 | Card | Algorithm | Coin | Hashrate | Core¹ | Mem² | Power |
 |------|-----------|------|----------|-------|------|-------|
-| RTX 3070 | `vecnohash` | VE (Vecno) | ~44 MH/s | 1710 +150 | stock | ~138 W |
-| RTX 3070 | `equihash` | YEC (Ycash) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
-| RTX 3070 | `exfer` | EXFER | ~973 H/s | 1710 +150 | +2000 | ~119 W |
+| RTX 3070 | `equihash192_7` | Ycash (YEC) | ~51.5 Sol/s | 1710 +150 | stock | ~147 W |
+| RTX 3070 | `exfer` | Exfer (EXFER) | ~973 H/s | 1710 +150 | +2000 | ~119 W |
 
 <sub>¹ Core = locked SM clock + offset (MHz): lock at 1710, add +150 — holds the clock at lower voltage (less power).</sub><br>
 <sub>² Mem = GDDR6 transfer-rate offset: `stock` = no OC (boosts to ~6801), `+2000` = memory overclock.</sub><br>
@@ -43,16 +49,19 @@ CUDA GPU miner.
 
 | Card | Algorithm | Coin | Hashrate | Core | Mem | Power |
 |------|-----------|------|----------|------|-----|-------|
-| RTX 3070 | `blake3` | QADO | ~4.3 GH/s | — | — | — |
+| RTX 3070 | `blake3` | Qado (QADO) | ~4.3 GH/s | — | — | — |
+| RTX 3070 | `vecnohash` | Vecno (VE) | ~44 MH/s | 1710 +150 | stock | ~138 W |
 
 <sub>blake3 from earlier builds (OC not benchmarked).</sub>
+
+</details>
 
 </details>
 
 ## Usage
 
 ```bash
-./nekominer -a <algo> -o <pool-url> -u <wallet>.<worker>
+./nekominer -a <ALGO> -o <POOL> -u <ADDRESS>.<WORKER>
 ./nekominer --help
 ```
 
@@ -60,7 +69,7 @@ Choose `-a` from the table above. Per-algorithm pool URLs, connection examples, 
 HiveOS flight sheets are in the sections below; pools shown with `ssl://` need the prefix.
 
 **HiveOS:** create a **Custom Miner** flight sheet with installation URL
-`https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz`
+`https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz`
 and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight sheets are below. The os.dog package is at the bottom.
 
 ## Requirements
@@ -71,37 +80,38 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 
 ---
 
-## VecnoHash — VE (Vecno)
+## Quantus (QTC)
 
 ```bash
-./nekominer -a vecnohash -o ssl://ninjaraider.com:44701 -u %ADDRESS%.%WORKER%
+# kryptex.network
+./nekominer -a quantus -o ssl://qtc.kryptex.network:8049 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
-<summary>VECNO ninjaraider nekominer</summary>
+<summary>QTC kryptex nekominer</summary>
 
 ```json
 {
-  "name": "VECNO ninjaraider nekominer",
+  "name": "QTC kryptex nekominer",
   "items": [{
-    "coin": "VECNO",
+    "coin": "QTC",
     "miner": "custom",
     "miner_config": {
-      "url": "ssl://ninjaraider.com:44701",
+      "url": "ssl://qtc.kryptex.network:8049",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
-      "user_config": "-a vecnohash"
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a quantus"
     }
   }]
 }
 ```
 </details>
 
-## Equihash — YEC (Ycash)
+## Equihash (192,7) — Ycash (YEC)
 
 ```bash
-./nekominer -a equihash -o ssl://ninjaraider.com:44561 -u %ADDRESS%.%WORKER%
+./nekominer -a equihash192_7 -o ssl://ninjaraider.com:44561 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -117,21 +127,54 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
       "url": "ssl://ninjaraider.com:44561",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
-      "user_config": "-a equihash"
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a equihash192_7"
     }
   }]
 }
 ```
 </details>
 
-## Exfer — EXFER
+## Equihash (144,5) — NULL
+
+`-u` takes a `null1…` address.
+
+```bash
+# ninjaraider.com
+./nekominer -a equihash144_5 -o ssl://ninjaraider.com:44981 -u <ADDRESS>.<WORKER>
+
+# pool.ariabrain.com
+./nekominer -a equihash144_5 -o 159.69.194.46:3353 -u <ADDRESS>.<WORKER>
+```
+
+<details>
+<summary>NULL ninjaraider nekominer</summary>
+
+```json
+{
+  "name": "NULL ninjaraider nekominer",
+  "items": [{
+    "coin": "NULL",
+    "miner": "custom",
+    "miner_config": {
+      "url": "ssl://ninjaraider.com:44981",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a equihash144_5"
+    }
+  }]
+}
+```
+</details>
+
+## Exfer (EXFER)
 
 Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 ```bash
-./nekominer -a exfer -o ssl://ninjaraider.com:44913 -u %ADDRESS%.%WORKER%
-./nekominer -a exfer -o ssl://exfer.luckypool.io:3336 -u %ADDRESS%.%WORKER%
+./nekominer -a exfer -o ssl://ninjaraider.com:44913 -u <ADDRESS>.<WORKER>
+./nekominer -a exfer -o ssl://exfer.luckypool.io:3336 -u <ADDRESS>.<WORKER>
 ```
 
 | Pool | Connection |
@@ -152,7 +195,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://ninjaraider.com:44913",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -173,8 +216,121 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://exfer.luckypool.io:3336",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
       "user_config": "-a exfer"
+    }
+  }]
+}
+```
+</details>
+
+## Poscan — Numen (NUMN)
+
+```bash
+./nekominer -a poscan -o ssl://numen.ninjaraider.com:44961 -u <ADDRESS>.<WORKER>
+```
+
+<details>
+<summary>NUMN ninjaraider nekominer</summary>
+
+```json
+{
+  "name": "NUMN ninjaraider nekominer",
+  "items": [{
+    "coin": "NUMN",
+    "miner": "custom",
+    "miner_config": {
+      "url": "ssl://numen.ninjaraider.com:44961",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a poscan"
+    }
+  }]
+}
+```
+</details>
+
+## CMFD
+
+On first start the miner downloads the model (~6.4 GB), so the first launch takes a while
+and needs that much free disk space. `-u` takes the 64-hex payout address.
+
+```bash
+# pool.ariabrain.com
+./nekominer -a cmfd -o "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9" -u <ADDRESS> --worker <WORKER>
+
+# cmfd-pool.online
+./nekominer -a cmfd -o "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be" -u <ADDRESS> --worker <WORKER>
+```
+
+<details>
+<summary>CMFD ariabrain nekominer</summary>
+
+```json
+{
+  "name": "CMFD ariabrain nekominer",
+  "items": [{
+    "coin": "CMFD",
+    "miner": "custom",
+    "miner_config": {
+      "url": "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a cmfd --worker %WORKER_NAME%"
+    }
+  }]
+}
+```
+</details>
+
+<details>
+<summary>CMFD cmfd-pool nekominer</summary>
+
+```json
+{
+  "name": "CMFD cmfd-pool nekominer",
+  "items": [{
+    "coin": "CMFD",
+    "miner": "custom",
+    "miner_config": {
+      "url": "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a cmfd --worker %WORKER_NAME%"
+    }
+  }]
+}
+```
+</details>
+
+## Vela (VELA)
+
+On first start the miner downloads the model (~1.2 GB), so the first launch takes a while
+and needs that much free disk space. `-u` takes a `vela1…` address.
+
+```bash
+# pool.ariabrain.com
+./nekominer -a vela -o http://159.69.194.46:3349 -u <ADDRESS>.<WORKER>
+```
+
+<details>
+<summary>VELA ariabrain nekominer</summary>
+
+```json
+{
+  "name": "VELA ariabrain nekominer",
+  "items": [{
+    "coin": "VELA",
+    "miner": "custom",
+    "miner_config": {
+      "url": "http://159.69.194.46:3349",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a vela"
     }
   }]
 }
@@ -185,23 +341,19 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
 
 `btxv4` is the post-185'000 fork; **`btx` is an alias for it** — the pre-fork v3 PoW is gone.
 
-`--pool-proto` defaults to `auto`, which probes the pool, so it can normally be omitted —
-ninjaraider speaks `ninja`, the other three `minebtx`. Worker placement is what differs
-between them: ninjaraider and btx-pool.com take `address.worker`, byronbay and diffpool
-take a bare address plus `--worker <name>`.
+`--pool-proto` defaults to `auto`, which probes the pool, so it can normally be omitted.
+On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
+(`--worker <WORKER>` does the same).
 
 ```bash
 # ninjaraider.com
-./nekominer -a btxv4 -o btxv4.ninjaraider.com:44950 -u <BTX_ADDRESS>.rig
-
-# btxbyronbay.com
-./nekominer -a btxv4 -o stratum.btxbyronbay.com:3335 -u <BTX_ADDRESS> --worker rig
-
-# diffpool.xyz
-./nekominer -a btxv4 -o btx.diffpool.xyz:3333 -u <BTX_ADDRESS> --worker rig
+./nekominer -a btxv4 -o btxv4.ninjaraider.com:44950 -u <ADDRESS>.<WORKER>
 
 # btx-pool.com
-./nekominer -a btxv4 -o btx-pool.com:3334 -u <BTX_ADDRESS>.rig
+./nekominer -a btxv4 -o btx-pool.com:3334 -u <ADDRESS>.<WORKER>
+
+# diffpool.xyz
+./nekominer -a btxv4 -o btx.diffpool.xyz:3333 -u <ADDRESS>.<WORKER>
 ```
 
 <details>
@@ -217,50 +369,8 @@ take a bare address plus `--worker <name>`.
       "url": "btxv4.ninjaraider.com:44950",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
       "user_config": "-a btxv4"
-    }
-  }]
-}
-```
-</details>
-
-<details>
-<summary>BTX byronbay nekominer</summary>
-
-```json
-{
-  "name": "BTX byronbay nekominer",
-  "items": [{
-    "coin": "BTX",
-    "miner": "custom",
-    "miner_config": {
-      "url": "stratum.btxbyronbay.com:3335",
-      "miner": "nekominer-hiveos",
-      "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
-      "user_config": "-a btxv4 --worker %WORKER%"
-    }
-  }]
-}
-```
-</details>
-
-<details>
-<summary>BTX diffpool nekominer</summary>
-
-```json
-{
-  "name": "BTX diffpool nekominer",
-  "items": [{
-    "coin": "BTX",
-    "miner": "custom",
-    "miner_config": {
-      "url": "btx.diffpool.xyz:3333",
-      "miner": "nekominer-hiveos",
-      "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
-      "user_config": "-a btxv4 --worker %WORKER%"
     }
   }]
 }
@@ -280,7 +390,28 @@ take a bare address plus `--worker <name>`.
       "url": "btx-pool.com:3334",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-hiveos-0.13.1.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
+      "user_config": "-a btxv4"
+    }
+  }]
+}
+```
+</details>
+
+<details>
+<summary>BTX diffpool nekominer</summary>
+
+```json
+{
+  "name": "BTX diffpool nekominer",
+  "items": [{
+    "coin": "BTX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "btx.diffpool.xyz:3333",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-hiveos-0.19.3.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -292,4 +423,4 @@ take a bare address plus `--worker <name>`.
 
 See [Releases](../../releases).
 
-- **os.dog package:** [`nekominer-osdog-0.13.1.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.13.1/nekominer-osdog-0.13.1.tar.gz)
+- **os.dog package:** [`nekominer-osdog-0.19.3.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.19.3/nekominer-osdog-0.19.3.tar.gz)

@@ -1,5 +1,113 @@
 # Changelog
 
+## [0.19.3] — 2026-10-25
+
+- **poscan:** hashrate improvement.
+
+## [0.19.1] — 2026-10-25
+
+- Added **sha3_256** algorithm.
+- **poscan:** hashrate improvement on the RTX 4070.
+
+## [0.18.1] — 2026-10-24
+
+- **quantus:** hashrate improvement on Turing, Ampere, Ada and Blackwell.
+- **btxv4:** hashrate improvement on Ada and Blackwell.
+
+## [0.18.0] — 2026-10-23
+
+- Added **quantus** algorithm — optimized for the RTX 3070 only for now.
+
+## [0.17.4] — 2026-10-22
+
+- **equihash144_5:** hashrate improvement on Ampere, Ada and Blackwell.
+
+## [0.17.3] — 2026-10-20
+
+- **equihash144_5:** hashrate improvement on Turing, Ada and Blackwell.
+
+## [0.17.2] — 2026-10-20
+
+- **equihash144_5:** hashrate improvement on Ampere.
+
+## [0.17.1] — 2026-10-20
+
+- **equihash144_5:** fixed pool connection issues.
+- Removed **vecnohash** algorithm.
+
+## [0.17.0] — 2026-10-20
+
+- Added **equihash144_5** algorithm.
+- **equihash** renamed to **equihash192_7** — `-a equihash` no longer works, update flight sheets.
+
+## [0.16.4] — 2026-10-18
+
+- **vela:** hashrate improvement on Ada and Blackwell.
+
+## [0.16.3] — 2026-10-16
+
+- **vela:** bug fixes.
+
+## [0.16.0] — 2026-10-16
+
+- Added **vela** algorithm.
+- **vela:** the model (~1.2 GB) is downloaded on first start.
+
+## [0.15.0] — 2026-10-15
+
+- Added **cmfd** algorithm.
+- **cmfd:** the model (~6.4 GB) is downloaded on first start.
+
+## [0.14.61] — 2026-10-15
+
+- **Equihash (192,7):** minor hashrate improvement on many architectures.
+
+## [0.14.60] — 2026-10-10
+
+- **Equihash:** minor hashrate improvement on Pascal and Turing.
+
+## [0.14.59] — 2026-10-01
+
+- **Equihash:** small speedups on Ampere, Ada and Blackwell.
+
+## [0.14.57] — 2026-09-28
+
+- **Equihash:** Pascal and Turing fixes.
+
+## [0.14.44] — 2026-09-20
+
+- Support mixed Turing and Ampere Equihash rigs in one binary.
+
+## [0.14.43] — 2026-09-20
+
+- **Equihash (192,7) — YEC:** hashrate improvement, lower CPU load (LA).
+
+## [0.14.41] — 2026-09-16
+
+- **Poscan:** hashrate improvement.
+
+## [0.14.32] — 2026-09-14
+
+- **Poscan:** hashrate improvement.
+
+## [0.14.29] — 2026-09-14
+
+- **Equihash:** fixed duplicate shares on multi-GPU rigs.
+
+## [0.14.28] — 2026-09-13
+
+- Added **poscan** algorithm.
+- **Equihash (192,7):** hashrate improvement.
+
+## [0.14.23] — 2026-09-08
+
+- **Minor bug fixes.**
+
+## [0.13.6] — 2026-09-02
+
+- **Fixed mass share rejects on multi-GPU rigs** on `minebtx`-protocol pools (btxbyronbay.com, diffpool.xyz and others speaking that protocol).
+- Hashrate boost on some Turing cards (RTX 20xx).
+
 ## [0.13.1] — 2026-08-22
 
 - **BTX v3 PoW removed** — `btx` is now an alias for `btxv4`, the post-185'000 fork.
