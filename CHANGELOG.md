@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.20.3] — 2026-11-14
+
+- Added **blake2b_prox** algorithm — Proxima (PROX); 1% dev fee.
+- Added Proxima AriaBrain HTTP connection example and HiveOS flight sheet with token authentication.
+
 ## [0.19.6] — 2026-11-14
 
 - **sha3_256:** reduced RigorChain dev fee to 2%.
