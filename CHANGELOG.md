@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.20.5] — 2026-11-14
+
+- Added ProximaPool connection example and HiveOS flight sheet for **blake2b_prox** with `txid` protocol, worker-name login and pool password.
+
 ## [0.20.3] — 2026-11-14
 
 - Added **blake2b_prox** algorithm — Proxima (PROX); 1% dev fee.
