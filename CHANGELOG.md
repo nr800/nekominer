@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.19.6] — 2026-11-14
+
+- **sha3_256:** reduced RigorChain dev fee to 2%.
+
 ## [0.19.3] — 2026-10-25
 
 - **poscan:** hashrate improvement.
