@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.20.9] — 2026-11-15
+
+- Updated **blake2b_prox** pool connection examples and HiveOS flight sheets for AriaBrain and ProximaPool.
+- Added InnovLab, Proxima Mine and Suprnova connection examples and HiveOS flight sheets.
+- Added Ninjaraider TLS/TCP connection examples and a HiveOS flight sheet in a collapsed section.
+
 ## [0.20.6] — 2026-11-15
 
 - Preparations for adding new pools.

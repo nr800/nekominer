@@ -69,12 +69,12 @@ CUDA GPU miner.
 Choose `-a` from the table above. Per-algorithm pool URLs, connection examples, and
 HiveOS flight sheets are in the sections below; pools shown with `ssl://` need the prefix.
 
-Replace `<ALGO>`, `<POOL>`, `<ADDRESS>`, `<WORKER>`, `<TOKEN>` and `<PASSWORD>` with your values.
+Replace `<ALGO>`, `<POOL>`, `<ADDRESS>`, `<WORKER>`, `<HOLDER_ID>`, `<POOL_ID>`, `<TOKEN>` and `<PASSWORD>` with your values.
 Commands are shown on one line. In HiveOS flight sheets, `%WAL%` and
 `%WORKER_NAME%` are filled in automatically; replace `<TOKEN>` and `<PASSWORD>` manually.
 
 **HiveOS:** create a **Custom Miner** flight sheet with installation URL
-`https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz`
+`https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz`
 and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight sheets are below. The os.dog package is at the bottom.
 
 ## Requirements
@@ -87,11 +87,11 @@ and pick the algorithm in *Extra config arguments*. Ready-made per-pool flight s
 
 ## Blake2b Prox — Proxima (PROX)
 
-Dev fee: **1%**. AriaBrain uses HTTP with token authentication.
+Dev fee: **1%**.
 
 ```bash
-# prox.ariabrain.com
-./nekominer -a blake2b_prox -o http://prox.ariabrain.com:3359 --pool-proto http --token <TOKEN> --worker <WORKER>
+# ariabrain
+./nekominer -a blake2b_prox -o http://prox.ariabrain.com:3359 -u <TOKEN> --worker <WORKER>
 ```
 
 <details>
@@ -107,24 +107,20 @@ Dev fee: **1%**. AriaBrain uses HTTP with token authentication.
       "url": "http://prox.ariabrain.com:3359",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
-      "user_config": "-a blake2b_prox --pool-proto http --token <TOKEN> --worker %WORKER_NAME%"
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
+      "user_config": "-a blake2b_prox --worker %WORKER_NAME%"
     }
   }]
 }
 ```
 </details>
 
-Replace `<TOKEN>` with your AriaBrain token in *Extra config arguments*.
-The wallet template supplies `-u` through the HiveOS wrapper; HTTP authentication
-uses `--token`. The worker is passed separately with `--worker`.
-For os.dog, set `algo` to `blake2b_prox`, `pool` to
-`http://prox.ariabrain.com:3359`, and add
-`--pool-proto http --token <TOKEN> --worker <WORKER>` to `addition`.
+AriaBrain uses the mining token as `-u`. Set the HiveOS wallet template to
+your mining token; the worker is passed separately with `--worker`.
 
 ```bash
-# proximapool.com
-./nekominer -a blake2b_prox -o stratum+tcp://proximapool.com:3355 --pool-proto txid -u <WORKER> -p <PASSWORD>
+# proximapool
+./nekominer -a blake2b_prox -o stratum+tcp://proximapool.com:3355 -u <WORKER> -p <TOKEN>
 ```
 
 <details>
@@ -140,20 +136,148 @@ For os.dog, set `algo` to `blake2b_prox`, `pool` to
       "url": "stratum+tcp://proximapool.com:3355",
       "miner": "nekominer-hiveos",
       "template": "%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
-      "user_config": "-a blake2b_prox --pool-proto txid -p <PASSWORD>"
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
+      "user_config": "-a blake2b_prox -p <TOKEN>"
     }
   }]
 }
 ```
 </details>
 
-ProximaPool uses the worker name as `-u` and the password from proximapool.com as
-`-p`. Replace `<PASSWORD>` in *Extra config arguments*; HiveOS supplies the worker
-through `%WORKER_NAME%` in the wallet template.
-For os.dog, set `algo` to `blake2b_prox`, `pool` to
-`stratum+tcp://proximapool.com:3355`, `template` to your worker name, and add
-`--pool-proto txid -p <PASSWORD>` to `addition`.
+ProximaPool uses the rig name as `-u` and the account token as `-p`.
+Replace `<TOKEN>` in *Extra config arguments*.
+
+```bash
+# innovlab
+./nekominer -a blake2b_prox -o stratum+ssl://global.innovlab.cc:19701 -u <HOLDER_ID> --worker <WORKER>
+
+# innovlab (TCP)
+./nekominer -a blake2b_prox -o stratum+tcp://eu3.innovlab.cc:19701 -u <HOLDER_ID> --worker <WORKER>
+```
+
+<details>
+<summary>PROX innovlab nekominer</summary>
+
+```json
+{
+  "name": "PROX innovlab nekominer",
+  "items": [{
+    "coin": "PROX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "stratum+ssl://global.innovlab.cc:19701",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
+      "user_config": "-a blake2b_prox --worker %WORKER_NAME%"
+    }
+  }]
+}
+```
+</details>
+
+InnovLab uses the public holder ID (hex) as `-u`. Set the HiveOS wallet
+to this holder ID. The worker is passed separately with `--worker`.
+TCP alternative: `stratum+tcp://eu3.innovlab.cc:19701`.
+
+```bash
+# proximamine
+./nekominer -a blake2b_prox -o stratum+ssl://pool.proximamine.com:3334 -u <HOLDER_ID>.<WORKER> -p <PASSWORD>
+```
+
+<details>
+<summary>PROX proximamine nekominer</summary>
+
+```json
+{
+  "name": "PROX proximamine nekominer",
+  "items": [{
+    "coin": "PROX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "stratum+ssl://pool.proximamine.com:3334",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
+      "user_config": "-a blake2b_prox -p <PASSWORD>"
+    }
+  }]
+}
+```
+</details>
+
+Proxima Mine uses `<HOLDER_ID>.<WORKER>` as `-u` and the pool secret as `-p`.
+Set the HiveOS wallet to the holder ID and replace `<PASSWORD>` in
+*Extra config arguments*.
+
+```bash
+# suprnova
+./nekominer -a blake2b_prox -o stratum+ssl://proxi.suprnova.cc:3356 -u <HOLDER_ID>.<WORKER> -p <TOKEN>
+```
+
+<details>
+<summary>PROX suprnova nekominer</summary>
+
+```json
+{
+  "name": "PROX suprnova nekominer",
+  "items": [{
+    "coin": "PROX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "stratum+ssl://proxi.suprnova.cc:3356",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%.%WORKER_NAME%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
+      "user_config": "-a blake2b_prox -p <TOKEN>"
+    }
+  }]
+}
+```
+</details>
+
+Suprnova uses `<HOLDER_ID>.<WORKER>` as `-u` and the Suprnova token as `-p`.
+Set the HiveOS wallet to the holder ID and replace `<TOKEN>` in
+*Extra config arguments*.
+
+<details>
+<summary>PROX ninjaraider — connection examples and HiveOS flight sheet</summary>
+
+```bash
+# ninjaraider (TLS)
+./nekominer -a blake2b_prox -o stratum+ssl://ninjaraider.com:45111 --pool-proto ninja -u <POOL_ID> --worker <WORKER>
+
+# ninjaraider (TCP)
+./nekominer -a blake2b_prox -o stratum+tcp://ninjaraider.com:45110 --pool-proto ninja -u <POOL_ID> --worker <WORKER>
+```
+
+Use your pool ID as `-u`; the worker is passed separately with `--worker`.
+Set the HiveOS wallet to your pool ID.
+
+```json
+{
+  "name": "PROX ninjaraider nekominer",
+  "items": [{
+    "coin": "PROX",
+    "miner": "custom",
+    "miner_config": {
+      "url": "stratum+ssl://ninjaraider.com:45111",
+      "miner": "nekominer-hiveos",
+      "template": "%WAL%",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
+      "user_config": "-a blake2b_prox --pool-proto ninja --worker %WORKER_NAME%"
+    }
+  }]
+}
+```
+
+For TCP, change `url` to `stratum+tcp://ninjaraider.com:45110`.
+
+</details>
+
+For os.dog, set `algo` to `blake2b_prox` and `pool` to the endpoint shown
+above. Set `template` to the value used for `-u`; put `-p` and `--worker`
+arguments, when required, in `addition`.
 
 ## Quantus (QTC)
 
@@ -175,7 +299,7 @@ For os.dog, set `algo` to `blake2b_prox`, `pool` to
       "url": "ssl://qtc.kryptex.network:8049",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a quantus"
     }
   }]
@@ -203,7 +327,7 @@ For os.dog, set `algo` to `blake2b_prox`, `pool` to
       "url": "ssl://ninjaraider.com:44561",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a equihash192_7"
     }
   }]
@@ -236,7 +360,7 @@ For os.dog, set `algo` to `blake2b_prox`, `pool` to
       "url": "ssl://ninjaraider.com:44981",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a equihash144_5"
     }
   }]
@@ -274,7 +398,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://ninjaraider.com:44913",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -295,7 +419,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://exfer.luckypool.io:3336",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a exfer"
     }
   }]
@@ -323,7 +447,7 @@ Argon2id (m=64 MiB, t=2, p=1) memory-hard PoW.
       "url": "ssl://numen.ninjaraider.com:44961",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a poscan"
     }
   }]
@@ -357,7 +481,7 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
       "url": "cmfd+tls://159.69.194.46:29445?pin=9dfb51083f287726117f689f87bc7a878792efcca58ca8b6f6e7c05ac5d152e9",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a cmfd --worker %WORKER_NAME%"
     }
   }]
@@ -378,7 +502,7 @@ and needs that much free disk space. `-u` takes the 64-hex payout address.
       "url": "cmfd+tls://109.199.124.187:29465?pin=ebe88f5e05f3a222208d551d05b6d39057b64ce8239ba7a708d487e15ac711be",
       "miner": "nekominer-hiveos",
       "template": "%WAL%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a cmfd --worker %WORKER_NAME%"
     }
   }]
@@ -409,7 +533,7 @@ and needs that much free disk space. `-u` takes a `vela1…` address.
       "url": "http://159.69.194.46:3349",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a vela"
     }
   }]
@@ -449,7 +573,7 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
       "url": "btxv4.ninjaraider.com:44950",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -470,7 +594,7 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
       "url": "btx-pool.com:3334",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -491,7 +615,7 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
       "url": "btx.diffpool.xyz:3333",
       "miner": "nekominer-hiveos",
       "template": "%WAL%.%WORKER_NAME%",
-      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-hiveos-0.20.6.tar.gz",
+      "install_url": "https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-hiveos-0.20.9.tar.gz",
       "user_config": "-a btxv4"
     }
   }]
@@ -503,4 +627,4 @@ On every pool the worker goes after the address, `<ADDRESS>.<WORKER>`
 
 See [Releases](../../releases).
 
-- **os.dog package:** [`nekominer-osdog-0.20.6.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.20.6/nekominer-osdog-0.20.6.tar.gz)
+- **os.dog package:** [`nekominer-osdog-0.20.9.tar.gz`](https://github.com/nr800/nekominer/releases/download/v0.20.9/nekominer-osdog-0.20.9.tar.gz)
