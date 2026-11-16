@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.21.0] — Unreleased
+## [0.21.0] — 2026-11-16
 
 - Added shared NVIDIA overclock controls: clock locks and offsets, power limits, fan control, inspection, dry-run and reset.
 - Added standalone OC application and exit policies for mining sessions.
