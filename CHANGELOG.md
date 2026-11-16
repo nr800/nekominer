@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.21.0] — Unreleased
+
+- Added shared NVIDIA overclock controls: clock locks and offsets, power limits, fan control, inspection, dry-run and reset.
+- Added standalone OC application and exit policies for mining sessions.
+- Added OC examples and a separate NVIDIA OC reference.
+
 ## [0.20.9] — 2026-11-15
 
 - Updated **blake2b_prox** pool connection examples and HiveOS flight sheets for AriaBrain and ProximaPool.
